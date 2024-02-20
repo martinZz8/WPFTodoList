@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="TodoList.Views.UpdateItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="SpacedButton">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0 0 10 0"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="FormTextBold">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0 10 0 0"
+        >
+            <TextBlock
+                Text="{Binding GetTitleName}"
+                FontSize="25"
+                FontWeight="Bold"
+            />
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0 25 0 0"
+            HorizontalAlignment="Left"
+        >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Name:"
+                VerticalAlignment="Center"
+                Margin="0 0 10 0"
+                Style="{StaticResource FormTextBold}"
+            />
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="200"
+                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="Status:"
+                VerticalAlignment="Center"
+                Margin="0 15 10 0"
+                Style="{StaticResource FormTextBold}"
+            />
+            <ComboBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="200"
+                ItemsSource="{Binding AvailableItemStatusesNames}"
+                SelectedItem="{Binding SelectedItemStatusVMM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Margin="0 15 0 0"
+            >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+        >
+            <Button
+                Content="Update"
+                Command="{Binding UpdateCommand}"
+                Style="{StaticResource SpacedButton}"
+            />
+            <Button
+                Content="Cancel"
+                Command="{Binding CancelCommand}"
+                Style="{StaticResource SpacedButton}"
+            />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,8 @@
+x64/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+.vs/
+packages/
+Migrations/

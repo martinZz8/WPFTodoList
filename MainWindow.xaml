@@ -1,0 +1,42 @@
+﻿<Window x:Class="TodoList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoList"
+        xmlns:views="clr-namespace:TodoList.Views"
+        xmlns:vms="clr-namespace:TodoList.ViewModels"
+        mc:Ignorable="d"
+        Title="TodoList"
+        Height="700"
+        Width="1200"
+        FontSize="14"
+>
+    <Grid
+        Margin="20 10"
+    >
+        <!--NOTE! Declare here new views -->
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:ListItemsViewModel}">
+                <views:ListItemsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AddItemViewModel}">
+                <views:AddItemView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:UpdateItemViewModel}">
+                <views:UpdateItemView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:DeleteItemViewModel}">
+                <views:DeleteItemView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AddStatusViewModel}">
+                <views:AddStatusView />
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl
+                Content="{Binding CurrentViewModel}"    
+            />
+        <!--<views:ListItemsView DataContext="{Binding CurrentViewModel}" />-->
+    </Grid>
+</Window>
