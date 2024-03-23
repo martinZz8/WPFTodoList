@@ -1,3 +1,5 @@
+Project based on tutorial: https://www.youtube.com/watch?v=fZxZswmC_BY&list=PLA8ZIAm2I03hS41Fy4vFpRw8AdYNBXmNm
+
 Useful PackageManagerConsole (PM) commands:
 1. add-migration <name>
 EF: Create new migration with the specified name.
